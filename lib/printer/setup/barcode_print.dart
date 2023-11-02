@@ -1,7 +1,9 @@
 import '../domain/enum/barcode_type.dart';
 import '../domain/enum/print_type.dart';
+
 import 'print_structure.dart';
 
+//Class to define properties from barcode print
 class BarcodePrint extends PrintStructure {
   final int height;
   final int width;

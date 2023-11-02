@@ -1,5 +1,6 @@
 import '../domain/enum/print_type.dart';
 
+//Contract to define properties from print
 abstract class PrintStructure {
   final PrintType type;
   final String message;
