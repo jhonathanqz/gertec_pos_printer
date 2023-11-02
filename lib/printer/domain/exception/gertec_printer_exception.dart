@@ -4,6 +4,7 @@ abstract class IGertecPrinterException implements Exception {
   IGertecPrinterException(this.message);
 }
 
+/// Exception to handle errors in the GertecPrinter class
 class GertecPrinterException extends IGertecPrinterException {
   GertecPrinterException(super.message);
 }

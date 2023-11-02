@@ -6,6 +6,7 @@ import '../setup/print_structure.dart';
 import '../setup/text_print.dart';
 
 abstract class GertecPrinterStyle {
+  //Function return a String to fontType
   static String _getFontType(FontType type) {
     switch (type) {
       case FontType.def:
@@ -21,6 +22,7 @@ abstract class GertecPrinterStyle {
     }
   }
 
+  //Function to return a String to alignment
   static String _getAlignment(TextAlignment alignment) {
     switch (alignment) {
       case TextAlignment.left:
@@ -34,6 +36,7 @@ abstract class GertecPrinterStyle {
     }
   }
 
+  //Function to return a String to barcodeType
   static String _getBarcodeType(BarcodeType type) {
     switch (type) {
       case BarcodeType.code128:
@@ -51,6 +54,7 @@ abstract class GertecPrinterStyle {
     }
   }
 
+  //Function to convert a PrintStructure to Map<String, dynamic>
   static Map<String, dynamic> lineToMethodChannel(PrintStructure line) {
     if (line is TextPrint) {
       return {

@@ -4,6 +4,7 @@ import '../domain/enum/text_alignment.dart';
 
 import 'print_structure.dart';
 
+//Class to define properties from text print
 class TextPrint extends PrintStructure {
   final TextAlignment alignment;
   final int fontSize;

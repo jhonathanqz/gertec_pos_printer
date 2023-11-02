@@ -12,6 +12,7 @@ import 'contract/i_gertec_printer_repository.dart';
 class GertecPrinterRepository implements IGertecPrinterRepository {
   static const MethodChannel _channel = MethodChannel(channelName);
 
+  //Function to print barcode
   @override
   Future<bool> barcodePrint(BarcodePrint barcodePrint) async {
     try {
@@ -23,6 +24,7 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
     }
   }
 
+  //Function to check status printer
   @override
   Future<String> checkStatusPrinter() async {
     try {
@@ -33,6 +35,7 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
     }
   }
 
+  //Function to cut paper
   @override
   Future<bool> cut() async {
     try {
@@ -43,6 +46,7 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
     }
   }
 
+  //Function to print line
   @override
   Future<bool> printLine(TextPrint textPrint) async {
     try {
@@ -54,6 +58,7 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
     }
   }
 
+  //Function to print list of text
   @override
   Future<bool> printTextList(List<TextPrint> textPrintList) async {
     try {
@@ -67,6 +72,7 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
     }
   }
 
+  //Function to wrap line
   @override
   Future<bool> wrapLine(int lineQuantity) async {
     try {
@@ -82,6 +88,7 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
     }
   }
 
+  //Function to call method channel
   static void _printer(Map<String, dynamic> content) {
     _channel.invokeMethod(
       'callPrintGertec',

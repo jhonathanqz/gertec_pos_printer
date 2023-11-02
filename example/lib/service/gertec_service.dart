@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:gertec_pos_printer/gertec_pos_printer.dart';
 import 'package:gertec_pos_printer/printer/domain/enum/barcode_type.dart';
 import 'package:gertec_pos_printer/printer/setup/barcode_print.dart';
@@ -13,7 +15,7 @@ class GertecService {
     try {
       return _gertecPrinter.instance.cut();
     } catch (e) {
-      print(e);
+      log(e.toString());
       return false;
     }
   }
@@ -23,7 +25,7 @@ class GertecService {
       final message = TextPrint(message: params);
       return _gertecPrinter.instance.printLine(message);
     } catch (e) {
-      print(e);
+      log(e.toString());
       return false;
     }
   }
@@ -33,7 +35,7 @@ class GertecService {
       final message = params.map((e) => TextPrint(message: e)).toList();
       return _gertecPrinter.instance.printTextList(message);
     } catch (e) {
-      print(e);
+      log(e.toString());
       return false;
     }
   }
@@ -49,7 +51,7 @@ class GertecService {
           message: text, height: height, width: width, barcodeType: type);
       return _gertecPrinter.instance.barcodePrint(message);
     } catch (e) {
-      print(e);
+      log(e.toString());
       return false;
     }
   }
@@ -58,7 +60,7 @@ class GertecService {
     try {
       return _gertecPrinter.instance.wrapLine(lines);
     } catch (e) {
-      print(e);
+      log(e.toString());
       return false;
     }
   }
@@ -67,7 +69,7 @@ class GertecService {
     try {
       return _gertecPrinter.instance.checkStatusPrinter();
     } catch (e) {
-      print(e);
+      log(e.toString());
       return 'false';
     }
   }
