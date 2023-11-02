@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="assets/logo.png" alt="Gertec_printer" />
+  <img src="https://github.com/jhonathanqz/gertec_pos_printer/blob/main/assets/logo.png" alt="Gertec_printer" height=250 width=400/>
 
   &#xa0;
 
