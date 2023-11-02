@@ -1,0 +1,4 @@
+enum PrintType {
+  barcode,
+  text,
+}
