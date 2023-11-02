@@ -1,6 +1,6 @@
 name: gertec_pos_printer
 description: Package to implement GERTEC printing functions on the GPOS700 equipment.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/jhonathanqz/gertec_pos_printer
 
 environment:
