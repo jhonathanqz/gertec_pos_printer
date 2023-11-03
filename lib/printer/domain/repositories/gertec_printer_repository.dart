@@ -6,6 +6,7 @@ import 'package:gertec_pos_printer/printer/setup/text_print.dart';
 import 'package:gertec_pos_printer/printer/style/gertec_printer_style.dart';
 
 import '../../setup/constants.dart';
+import '../models/printer_response.dart';
 
 import 'contract/i_gertec_printer_repository.dart';
 
@@ -14,11 +15,12 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
 
   //Function to print barcode
   @override
-  Future<bool> barcodePrint(BarcodePrint barcodePrint) async {
+  Future<PrinterResponse> barcodePrint(BarcodePrint barcodePrint) async {
     try {
-      _printer(GertecPrinterStyle.lineToMethodChannel(barcodePrint));
+      final response =
+          await _printer(GertecPrinterStyle.lineToMethodChannel(barcodePrint));
       cut();
-      return true;
+      return PrinterResponse.fromJson(response);
     } catch (e) {
       throw GertecPrinterException(e.toString());
     }
@@ -26,10 +28,10 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
 
   //Function to check status printer
   @override
-  Future<String> checkStatusPrinter() async {
+  Future<PrinterResponse> checkStatusPrinter() async {
     try {
       final status = await _channel.invokeMethod('callStatusGertec');
-      return status;
+      return PrinterResponse.fromJson(status);
     } catch (e) {
       throw GertecPrinterException(e.toString());
     }
@@ -37,10 +39,10 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
 
   //Function to cut paper
   @override
-  Future<bool> cut() async {
+  Future<PrinterResponse> cut() async {
     try {
-      _channel.invokeMethod('callCutGertec');
-      return true;
+      final response = await _channel.invokeMethod('callCutGertec');
+      return PrinterResponse.fromJson(response);
     } catch (e) {
       throw GertecPrinterException(e.toString());
     }
@@ -48,11 +50,12 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
 
   //Function to print line
   @override
-  Future<bool> printLine(TextPrint textPrint) async {
+  Future<PrinterResponse> printLine(TextPrint textPrint) async {
     try {
-      _printer(GertecPrinterStyle.lineToMethodChannel(textPrint));
+      final response =
+          await _printer(GertecPrinterStyle.lineToMethodChannel(textPrint));
       cut();
-      return true;
+      return PrinterResponse.fromJson(response);
     } catch (e) {
       throw GertecPrinterException(e.toString());
     }
@@ -60,13 +63,13 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
 
   //Function to print list of text
   @override
-  Future<bool> printTextList(List<TextPrint> textPrintList) async {
+  Future<PrinterResponse> printTextList(List<TextPrint> textPrintList) async {
     try {
       for (var line in textPrintList) {
         _printer(GertecPrinterStyle.lineToMethodChannel(line));
       }
-      cut();
-      return true;
+      final response = await cut();
+      return response;
     } catch (e) {
       throw GertecPrinterException(e.toString());
     }
@@ -74,23 +77,23 @@ class GertecPrinterRepository implements IGertecPrinterRepository {
 
   //Function to wrap line
   @override
-  Future<bool> wrapLine(int lineQuantity) async {
+  Future<PrinterResponse> wrapLine(int lineQuantity) async {
     try {
-      _channel.invokeMethod(
+      final response = await _channel.invokeMethod(
         'callNextLine',
         {
           'lineQuantity': lineQuantity,
         },
       );
-      return true;
+      return PrinterResponse.fromJson(response);
     } catch (e) {
       throw GertecPrinterException(e.toString());
     }
   }
 
   //Function to call method channel
-  static void _printer(Map<String, dynamic> content) {
-    _channel.invokeMethod(
+  static Future<dynamic> _printer(Map<String, dynamic> content) async {
+    return await _channel.invokeMethod(
       'callPrintGertec',
       content,
     );

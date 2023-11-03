@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:gertec_pos_printer/gertec_pos_printer.dart';
 import 'package:gertec_pos_printer/printer/domain/enum/barcode_type.dart';
+import 'package:gertec_pos_printer/printer/domain/enum/gertec_type.dart';
 
 import 'service/gertec_service.dart';
 
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    _gertecPrinterPlugin = GertecPOSPrinter();
+    _gertecPrinterPlugin = GertecPOSPrinter(gertecType: GertecType.gpos700);
     _gertecService = GertecService(gertecPrinter: _gertecPrinterPlugin);
     super.initState();
   }
