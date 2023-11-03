@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="https://github.com/jhonathanqz/gertec_pos_printer/blob/main/assets/logo.png" alt="Gertec_printer" height=250 width=400/>
+  <img src="https://github.com/jhonathanqz/gertec_pos_printer/blob/main/assets/logo.png" title="Gertec_pos_printer" alt="Gertec_printer" height=250 width=400/>
 
   &#xa0;
 
@@ -13,7 +13,6 @@
   <a href="#rocket-tecnologias">Tecnologias</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-pré-requisitos">Pré requisitos</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-ajuda">Ajuda</a> &#xa0; | &#xa0;
-  <a href="#memo-licença">Licença</a> &#xa0; | &#xa0;
   <a href="https://github.com/jhonathanqz" target="_blank">Autor</a>
 </p>
 
@@ -23,27 +22,33 @@
 
 ## :dart: Sobre ##
 
-O package `gertec_pos_printer` não é Oficial da GERTEC. Essa é uma integração com a impressora do equipamento GPOS700.
+O package `gertec_pos_printer` não é Oficial da GERTEC. Essa é uma integração com a impressora dos modelos GERTEC GPOS700 e GERTEC SK-210.
 
 ### Package somente funciona com Android level 21 ou posterior.
 
-### Package está implementado até o momento somente para o modelo GPOS700.
+### Package está implementado até o momento somente para os modelos GPOS700 e SK-210.
 
 ## :sparkles: Funcionalidades ##
 
+Para utilizar o plugin é necessário criar uma instância da classe `GertecPOSPrinter` passando como parâmetro o modelo de equipamento utilizado `GertecType`.
+
 Funções implementadas:
 
-:heavy_check_mark: GertecPrinter().instance.cut() -> Corta o papel\
+```dart
+final GertecPOSPrinter gertecPosPrinter = GertecPOSPrinter(gertecType: GertecType.gpos700);
+```
 
-:heavy_check_mark: GertecPrinter().instance.printLine("message") -> Imprime em uma linha o parâmetro passado;\
+:heavy_check_mark: gertecPosPrinter.instance.cut() -> Corta o papel\
 
-:heavy_check_mark: GertecPrinter().instance.printTextList(['message1', 'message2']) -> Imprime uma lista de textos;\
+:heavy_check_mark: gertecPosPrinter.instance.printLine("message") -> Imprime em uma linha o parâmetro passado;\
 
-:heavy_check_mark: GertecPrinter().instance.barcodePrint('barcode') -> Imprime um código de barras conforme configurações enviadas por parâmetro;\
+:heavy_check_mark: gertecPosPrinter.instance.printTextList(['message1', 'message2']) -> Imprime uma lista de textos;\
 
-:heavy_check_mark: GertecPrinter().instance.wrapLine(1) -> Avança a quantidade de linhas informada por parâmetro;\
+:heavy_check_mark: gertecPosPrinter.instance.barcodePrint('barcode') -> Imprime um código de barras conforme configurações enviadas por parâmetro;\
 
-:heavy_check_mark: GertecPrinter().instance.checkStatusPrinter() -> Devolve uma `String` com o status atual da impressora;\
+:heavy_check_mark: gertecPosPrinter.instance.wrapLine(1) -> Avança a quantidade de linhas informada por parâmetro;\
+
+:heavy_check_mark: gertecPosPrinter.instance.checkStatusPrinter() -> Devolve uma `String` com o status atual da impressora;\
 
 ## :rocket: Tecnologias ##
 
@@ -66,10 +71,7 @@ Caso precise de ajuda com o plugin, segue em anexo servidor do discord.
 
 - [Ajuda](https://discord.gg/dH22WbgK)
 
-## :memo: Licença ##
-
-Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
-
+</br>
 
 Feito por <a href="https://github.com/jhonathanqz" target="_blank">Jhonathan Queiroz</a>
 

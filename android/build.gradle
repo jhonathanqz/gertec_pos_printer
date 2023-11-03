@@ -57,6 +57,7 @@ android {
         implementation 'com.google.zxing:core:3.4.1'
         implementation("androidx.appcompat:appcompat:1.6.1")
         implementation("androidx.appcompat:appcompat-resources:1.6.1")
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
         compileOnly fileTree(include: ['*.aar'], dir: 'libs')
 
         implementation 'org.apache.commons:commons-lang3:3.9'

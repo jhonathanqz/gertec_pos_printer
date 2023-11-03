@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:gertec_pos_printer/gertec_pos_printer.dart';
 import 'package:gertec_pos_printer/printer/domain/enum/barcode_type.dart';
+import 'package:gertec_pos_printer/printer/domain/models/printer_response.dart';
 import 'package:gertec_pos_printer/printer/setup/barcode_print.dart';
 import 'package:gertec_pos_printer/printer/setup/text_print.dart';
 
@@ -11,36 +12,36 @@ class GertecService {
   GertecService({required GertecPOSPrinter gertecPrinter})
       : _gertecPrinter = gertecPrinter;
 
-  Future<bool> cut() async {
+  Future<PrinterResponse?> cut() async {
     try {
       return _gertecPrinter.instance.cut();
     } catch (e) {
       log(e.toString());
-      return false;
+      return null;
     }
   }
 
-  Future<bool> printLine(String params) async {
+  Future<PrinterResponse?> printLine(String params) async {
     try {
       final message = TextPrint(message: params);
       return _gertecPrinter.instance.printLine(message);
     } catch (e) {
       log(e.toString());
-      return false;
+      return null;
     }
   }
 
-  Future<bool> printTextList(List<String> params) async {
+  Future<PrinterResponse?> printTextList(List<String> params) async {
     try {
       final message = params.map((e) => TextPrint(message: e)).toList();
       return _gertecPrinter.instance.printTextList(message);
     } catch (e) {
       log(e.toString());
-      return false;
+      return null;
     }
   }
 
-  Future<bool> barcodePrint({
+  Future<PrinterResponse?> barcodePrint({
     required String text,
     required int height,
     required int width,
@@ -52,25 +53,25 @@ class GertecService {
       return _gertecPrinter.instance.barcodePrint(message);
     } catch (e) {
       log(e.toString());
-      return false;
+      return null;
     }
   }
 
-  Future<bool> wrapLine(int lines) async {
+  Future<PrinterResponse?> wrapLine(int lines) async {
     try {
       return _gertecPrinter.instance.wrapLine(lines);
     } catch (e) {
       log(e.toString());
-      return false;
+      return null;
     }
   }
 
-  Future<String> checkStatusPrinter() async {
+  Future<PrinterResponse?> checkStatusPrinter() async {
     try {
       return _gertecPrinter.instance.checkStatusPrinter();
     } catch (e) {
       log(e.toString());
-      return 'false';
+      return null;
     }
   }
 }
